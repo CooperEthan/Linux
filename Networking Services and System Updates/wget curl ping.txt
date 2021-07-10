@@ -1,0 +1,18 @@
+WGET 
+
+to download thngs by using url
+
+wget http://website.com/filename
+
+CURL AND PING COMMANDS
+
+Linux = curl
+Linux = ping
+
+curl http://website.com/filename
+curl -o http://website.com/filename
+
+curl -O https://the.earth.li/~sgtatham/putty/latest/putty-0.74.tar.gz
+--> that is another way to download other then wget.
+just right click on the link you will download and copy the link
+

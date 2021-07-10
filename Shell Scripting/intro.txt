@@ -1,0 +1,48 @@
+LINUX KERNEL
+
+Kernel is a interface between hardware and software
+
+	USER
+	 |
+      Application
+	 |
+       Shell
+         |
+       Kernel
+         |
+      Hardware ( Cpu, Memory, HD )
+
+Application + shell = Software
+Shell + Kernel = Operating system
+
+TYPES OF LINUX SHELLS
+
+-	Gnome
+-	KDE
+-	sh  --> Born shell
+-	bash --> Born Again shell  --> used in Linux environment
+-	csh and tchs 
+-	ksh  ( compatable with sh and bash )  --> it is used Solaris environment
+
+cat /etc/shells
+
+
+
+------------------
+
+[ecooper@mylinuxvm ~]$ echo $0
+-bash
+[ecooper@mylinuxvm ~]$ cat /etc/shell
+cat: /etc/shell: No such file or directory
+[ecooper@mylinuxvm ~]$ cat /etc/shells
+/bin/sh
+/bin/bash
+/usr/bin/sh
+/usr/bin/bash
+/bin/tcsh
+/bin/csh
+[ecooper@mylinuxvm ~]$ cat /etc/passwd | grep -i ecooper
+ecooper:x:1000:1000:Ethan Cooper:/home/ecooper:/bin/bash
+[ecooper@mylinuxvm ~]$ ^C
+
+

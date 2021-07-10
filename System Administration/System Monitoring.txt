@@ -1,0 +1,45 @@
+SYSTEM MONITORING
+
+-	top
+-	df
+-	dmesg  --> errors, warning, issues etc..
+-	iostat 1 --> 
+-	netstat  --> network related information
+-	free --> memory and disk usage
+-	cat /proc/cpuinfo --> cpu infor 
+-	cat /proc/meminfo --> memory info
+
+-----------------
+[root@MyLinuxVM /]# df -h
+Filesystem               Size  Used Avail Use% Mounted on
+devtmpfs                 879M     0  879M   0% /dev
+tmpfs                    895M     0  895M   0% /dev/shm
+tmpfs                    895M  9.5M  886M   2% /run
+tmpfs                    895M     0  895M   0% /sys/fs/cgroup
+/dev/mapper/centos-root   13G  4.5G  8.1G  36% /
+/dev/sda1               1014M  185M  830M  19% /boot
+tmpfs                    179M   36K  179M   1% /run/user/1000
+----------------
+[root@MyLinuxVM /]# iostat
+Linux 3.10.0-1160.el7.x86_64 (MyLinuxVM)        03/21/2021      _x86_64_       (1 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.37    0.01    4.62    0.00    0.00   94.99
+
+Device:            tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn
+sda               0.67        18.36         5.01    1260450     343955
+dm-0              0.64        18.08         4.78    1241230     328139
+dm-1              0.00         0.03         0.00       2208          0
+---------------------
+
+[root@MyLinuxVM /]# netstat -rnv
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+192.168.56.0    0.0.0.0         255.255.255.0   U         0 0          0 enp0s3
+192.168.122.0   0.0.0.0         255.255.255.0   U         0 0          0 virbr0
+--------------------------
+[root@MyLinuxVM /]# free
+              total        used        free      shared  buff/cache   available
+Mem:        1832932      773952      137992       19156      920988      852540
+Swap:       1572860           0     1572860
+------------------

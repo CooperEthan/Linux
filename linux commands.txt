@@ -1,0 +1,404 @@
+- cd / -- root
+- ls -l -- all directeries
+---
+- su - and password  -> it makes you root user
+
+- Creating Files
+	- touch ( touch jerry -> creates jerry file )
+	- touch bart lisa -> creates bart lisa files
+	- cp ( cp jerry clark ) 
+	- vi ( vi homer , esc : wq! )
+- Creating Directories
+	- mkdir seinfeld -> creates seinfeld directory
+
+- ls -l -> list everything
+- ls -ltr -> list by creation time
+
+FIND FILES AND DIRECTORIES:
+- find  ( find / -name "ifcfg-enp0s3"
+- locate  ( locate kramer -> finds the location of kramer )
+	to update locate database run "updatedb" 
+	if it doesnt work run a root "yum install mlocate"
+
+CHANGING PASSWORD:
+
+Command = passwd userid
+passwd
+old password 
+new password
+retype password
+
+WILDCARDS:
+
+-	*  reperesents zero or more character
+-	? represents a single character
+-	[] reperesents a range of characters
+
+rm abc* --> remove anything starts with abc
+touch abc*{1..9}-xyz --> cretaes abc1-xyz .....abc2-xyz  files(total 9)
+ls -l abc* --> list all files starts with abc
+rm *xyz --> remove all the files end with xyz
+ls -l ?bc* -->list all the files contains bc in it
+ls -l *[cd]* --> shows any file that has c or d in it
+rm *xy* --> delete anything has xy
+
+SOFT AND HARD LINKS:
+
+inode = Pointer or number of a file on the hard disk
+Soft Link = Link will be removed if file is removed or renamed.
+
+- ln  --> ( ln -s /home/ecooper/hulk)
+- ln -s
+ ls -li  --> inode
+ ls filename -ltri  --> shows the filename with details
+
+ARGUMENTS:
+
+ls -l bart --> only list bart file
+ls -ltri   --> list with time 
+rm -r seinfeld/  --> removes seinfeld directory
+man ls --> it will give manual for user commands
+
+FILE PERMISSION:
+
+3 types of permission
+- r  read
+- w  write
+- x  execute =runnig a program
+
+Each -permission (rwx) can be controlled at three levels
+- u user=yourself
+- g group=can be people in the same project
+- o other=everyone on the system
+
+File or Directory permission can be displayed by running ls -l command
+-   -rwxrwxrwx
+
+Command to change permission:
+
+- chmod
+  chmod g-w jerry  --> remove write permission from group for jerry file
+  chmod a-r jerry --> remove read permission from all
+  chmod u-w jerry  --> remove write permission from user which is yourself in jerry file
+  chmod u+wr jerry --> adds write read permission for user in jeryr file
+  chmod g+wr jerry  --> adds read write for group
+  chmod a-x seinfeld --> removes executable permisson, so noone can cd into seinfeld directory
+  chmod a+x seinfeld --> gives back that permission
+
+PERMISSIONS USING NUMERIC MODE:
+
+0 No Permission      ---
+1 Execute            --x
+2 Write              -w-
+3 Execute+Write      -wx
+4 Read               r--
+5 Read+Execute       r-x
+6 Read+Write         rw-
+7 Read+Write+Execute rwx
+
+chmod 764  filename -->  7 for User Read+Write+Execute
+	    	         6 for Group Read+Write
+		         4 for other Read
+chmod 600 sam --> -rw------ it will look like this when you do ls -ltr sam
+
+FILE OWNERSHIP
+
+There are 2 owners of file or directory
+- User and group
+
+Command to change file ownership
+- chown and chgrp
+	- chwon chnages the ownership of a file
+	- chgrp changes the group ownership of a file
+
+Recursive ownership change options(Cascade)
+. -R
+
+chown root lisa --> makes lisa file belong to root
+chgrp root lisa --> makes lisa file belong to root group
+
+
+ACCESS CONTROL LIST (ACL)
+
+ACL are used to mkae flexibl permission mechanism in Linux
+Commans:
+setfacl and getfacl
+
+1)To add permission for user
+setfacl -m u:user:rwx /path/to/file
+
+2)To add permissions for group
+setfacl -m g:group:rw /path/to/file
+
+3) To allow all files or directories to inhreit ACL entries from the directory withing
+setfacl -dm "entry" /path/to/dir
+
+4) To remove a spesific entry
+setfacl -x u:user /path/to/file(For a spesific user)
+
+5)To remove all entries
+setfacl -b path/to/file (For all users)
+
+getfacl tx --> gives owner group and permission detailed of tx file
+
+setfacl -m u:ecooper:rw /tmp/tx --> gives rw permission for tx file to user ecooper
+setfacl -m g:ecooper:rw /tmp/tx --> gives rw permission for tx file to group
+ecooper
+setfacl -x u:ecooper /tmp/tx --> removes permission for tx file from user ecooper
+setfacl -b /tmp/tx --> removes permission for tx file from all
+
+HELP COMMANDS
+
+- whatis command  ( whatis ls )
+- command --help ( ls --help )
+- man command    ( man ls )
+
+TAP COMPLETIONS AND UP ARROW
+
+- chm TAB
+- ls j<TAB>
+- cd Des<TAB>
+
+ADDING TEXT to FILES (REDIRECTS)
+
+3 simple ways to add text to a file
+-	vi
+-	Redirect command output > or >>
+-	echo > or >>  ( > overwrites the content in file , >> adds new text on 	top of current content )
+
+STANDART OUTPUT to a FILE
+
+command  -> tee -->stdout
+             |
+             ^
+            FILE
+
+echo "hello world" |  tee hello.txt (it will interactively added in file)
+echo "hello moon" |  tee -a hello.txt (it will interactively append in file)
+
+PIPES
+
+ls -l | more --> it will show page by page, just hit space to go down
+ls -l | tail -1 --> gives last line of the output
+
+FILE MAINTENANCE COMMANDS
+
+- cp
+- rm
+- mv ( move or rename ) -- mv jerry david 
+- mkdir
+- rmdir 0r rm -r ( remove directory)
+- chgrp ( change group )
+- chown (change pwnership )
+
+chgrp root puddy (change group to root)
+chown root puddy (change ownership to root)
+chown ecooper:ecooper puddy (gives back to groupt and ownership to user)
+you have to be root to do all this. ( command su - makes you root)
+
+
+FILE DISPLAY COMMANDS
+
+-	cat
+-	more
+-	less
+-	head
+-	tail
+
+cp /var/log/messages . ( creates messages file and copies all the log inside. you have to be root for that )
+more messages -->shows page by page
+less messages -->shows less page up and down to see
+head -2 messages --> shows first 2 line of messages file
+tail -2 messages --> shows last 2 lines of messages file
+
+FILTERS/TEXT PROCESSORS COMMANDS
+
+-	cut 
+-	awk
+-	grep and egrep ( searching spesific word )
+-	sort
+-	uniq
+-	wc ( how many words , letter, lines in file )
+
+CUT:
+
+cut filename  = does not work
+cut --version = check version
+cut -c1 filename = list one character
+cut -c1,2,4 filename  = pick and choose character
+cut -c1-3 filename = list range of character
+cut -c1-3,6-8 filename = list spesific range of character
+cut -b1-3 filename  = list by byte size
+
+cut -c1-5 jerry --> list first 5 characters of every line
+cut -c1,3,5,7  --> lists 1. 3. 5. 7. characters and put together
+cut -c1-3,6-8  --> lists letters between 1-3 and 6-8 , puts togehter
+cut -d: -f 6 /etc/passwd = list first 6 and 7 th column seperated by :
+ls -l | cut -c2-4  = only print user permissions of files/dir
+
+AWK:
+
+awk --version = check version
+awk '{print $1}' filename  = returns 1. column
+ls -l | awk '{print $1,$3}' = returns 1. and 3. column
+ls -l | awk '{print $NF}'  = gives last column
+awk '/Jerry/ {print}' filename = searches for a spesific word
+awk -F: '{print $1}' /etc/passwd = output only 1. field of /etc/passwd
+echo "Hello Tom" | awk '{$2="Adam"; print $0}' = replace words field words
+cat file | awk '{$2="Imran";print $0}' = replace words field words
+awk 'length($0) > 15' filename  = get lines that have more than 15 byte size
+ls -l | awk '{if($9 == "seinfeld") print $0;}' = get the field matching seinfeld in /home/ecooper
+ls -l | awk '{print NF}' = number of fields
+
+GREP/EGREP
+
+grep --version = check version
+man grep = detail information about grep commands
+grep keyword filename = search for a keyword from a file
+grep -c keyword filename = search for a keyword and count it
+grep -i KEYword filename = search for a keyword ignore case-sensitive (i=ignore)
+grep -n keyword filename = display the matched lines and their line numbers
+grep -v keyword filename = display everything but keyword
+grep keyword filename | awk '{print $1}' = search for keyword, then only give the 1. clumn
+ls -l | grep Desktop
+
+egrep -i "keyword|keyword2" filename =
+
+[ecooper@MyLinuxVM seinfeld]$ grep -vi seinfeld seinfeld-characters | awk '{print $1}' | cut -c1-3 --> gets first column and cut first 3 letters print it.
+
+[ecooper@MyLinuxVM seinfeld]$ egrep -i "seinfeld|costanza" seinfeld-characters
+Jerry Seinfeld
+George Costanza
+Frank Costanza
+Estelle Costanza
+Morty Seinfeld
+
+SORT/UNIQ
+
+sort file = sorts file in alphabetical order
+sort -r file = sort in reverse alphabetical order
+sort -k2 file = sort by field number
+
+uniq file           = removes duplicates
+sort file | uniq    = always sort first before using uniq
+sort file | uniq -c = sort first then uniq and list count
+sort file | uniq -d = only show repeated lines
+
+[root@MyLinuxVM seinfeld]# sort seinfeld-characters | uniq
+
+WC (word count):
+
+wc file = check file line count, word count and byte count
+wc -l file = get the number of lines in a file
+wc -w file = number of words in a file
+wc -c file = byte size of file
+wc directory =not allowed
+ls -l | wc -l = number of files
+grep keyword | wc -l
+
+[ecooper@MyLinuxVM ~]$ ls -l | grep drw | wc -l
+12
+
+[ecooper@MyLinuxVM seinfeld]$ grep -i seinfeld seinfeld-characters
+Jerry Seinfeld
+Morty Seinfeld
+Jerry Seinfeld
+[ecooper@MyLinuxVM seinfeld]$ grep -i seinfeld seinfeld-characters | wc -l
+3
+
+DIFF/CMP (COMPARE FILES)
+
+-	diff
+-	cmp
+
+[ecooper@MyLinuxVM superman]$ diff superman-characters superman-characters2
+1,2c1
+< clark kent
+< General Zod
+---
+> General Peter
+[ecooper@MyLinuxVM superman]$ cmp superman-characters superman-characters2
+superman-characters superman-characters2 differ: byte 1, line 1
+[ecooper@MyLinuxVM superman]$
+
+
+COMPRESS AND UN-COMPRESS FILES
+
+-	tar
+-	gzip
+-	gzip -d OR gunzip
+
+[ecooper@MyLinuxVM ]$ tar cvf ecooper.tar . --> gets all the files inside the current directory , puts inside of ecooper.tar file. extension has to be .tar
+[ecooper@MyLinuxVM ~]$ mkdir blah
+[ecooper@MyLinuxVM ~]$ mv ecooper.tar blah
+[ecooper@MyLinuxVM ~]$ cd blah
+[ecooper@MyLinuxVM blah]$ ls
+ecooper.tar
+[ecooper@MyLinuxVM blah]$ tar xvf ecooper.tar  --> dumps everything in blah directory
+[ecooper@MyLinuxVM blah]$ gzip ecooper.tar  --> zips ecooper.tar file into ecooper.tar.gz
+
+-rw-rw-r--. 1 ecooper ecooper 7403520 Mar 19 21:56 ecooper.tar
+-rw-rw-r--. 1 ecooper ecooper 1157261 Mar 19 21:56 ecooper.tar.gz
+
+[ecooper@MyLinuxVM blah]$ gzip -d ecooper.tar.gz --> unzips back to ecooper.tar
+
+[ecooper@MyLinuxVM ~]$ rm -rf blah/ --> remove blah directory with everything inside
+
+TRUNCATE FILE SIZE(truncate)
+
+- is used to shrink or extend the size of a file to the spesified size (it chops the file)
+
+-	truncate -s 10 filename
+
+[ecooper@MyLinuxVM ~]$ truncate -s 40 seinfeld-words
+[ecooper@MyLinuxVM ~]$ ls -l seinfeld-words
+-rw-rw-r--. 1 ecooper ecooper 40 Mar 19 22:26 seinfeld-words
+[ecooper@MyLinuxVM ~]$ cat seinfeld-words
+puffyshirt giddyup yadayada kavorka sere[ecooper@MyLinuxVM ~]$
+[ecooper@MyLinuxVM ~]$ truncate -s 60 seinfeld-words
+[ecooper@MyLinuxVM ~]$ ls -l seinfeld-words
+-rw-rw-r--. 1 ecooper ecooper 60 Mar 19 22:27 seinfeld-words
+[ecooper@MyLinuxVM ~]$
+
+
+COMBINING AND SPLITING FILES
+
+-	cat file1 file2 file3 > file3
+-	split file3
+-	e.g split -l 300 file.txt childfile
+
+
+[ecooper@MyLinuxVM ~]$ split -l 2 countries sep
+-rw-rw-r--. 1 ecooper ecooper     42 Mar 19 22:44 countries
+-rw-rw-r--. 1 ecooper ecooper     12 Mar 19 22:44 sepab
+-rw-rw-r--. 1 ecooper ecooper     12 Mar 19 22:44 sepaa
+-rw-rw-r--. 1 ecooper ecooper     13 Mar 19 22:44 sepac
+-rw-rw-r--. 1 ecooper ecooper      5 Mar 19 22:44 sepad
+[ecooper@MyLinuxVM ~]$ cat sepaa
+England
+USA
+[ecooper@MyLinuxVM ~]$ cat sepab
+Canada
+swiz
+[ecooper@MyLinuxVM ~]$ cat sepac
+japan
+frnace
+[ecooper@MyLinuxVM ~]$ cat sepad
+uae
+
+
+LINUX vs. WINDOWS COMMANDS
+
+
+
+
+
+
+
+
+
+
+
+
+
+

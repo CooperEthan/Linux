@@ -1,0 +1,36 @@
+ENVIRONMENT VARIABLES
+
+- To view all env variables
+	- printenv or env
+- To view ONE env variabel
+	- echo $SHELL
+- To set the environement variables
+	- export TEST=1
+	- echo $TEST
+- To set env variable permanently
+	- vi .bashrc
+	- TEST ='123'
+	- export TEST
+- To set global env variable permanently
+	- vi /etc/profile or /etc/bashrc
+	- TEST ='123'
+	- export TEST
+
+--------------
+
+[ecooper@mylinuxvm ~]$ echo $MAIL
+/var/spool/mail/ecooper
+[ecooper@mylinuxvm ~]$ echo $PATH
+/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ecooper/.local/bin:/home/ecooper/bin
+[ecooper@mylinuxvm ~]$ echo $HOME
+/home/ecooper
+[ecooper@mylinuxvm ~]$ cd /etc
+[ecooper@mylinuxvm etc]$ cd $HOME
+[ecooper@mylinuxvm ~]$ export TEST=1
+[ecooper@mylinuxvm ~]$ echo $TEST
+1
+[ecooper@mylinuxvm ~]$ cp .bashrc bashrc.orig
+[ecooper@mylinuxvm ~]$ vi .bashrc
+echo[ecooper@mylinuxvm ~]$ echo $TEST
+123
+

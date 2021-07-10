@@ -1,0 +1,21 @@
+FINDING SYSTEM INFORMATION
+
+-	cat /etc/redhat-release
+-	uname -a
+-	dmidecode  --> bios info, memory info, system info , manufacturer info 
+-	arch 
+
+---------------------
+
+[root@MyLinuxVM ~]# uname -a
+Linux mylinuxos 3.10.0-1160.el7.x86_64 #1 SMP Mon Oct 19 16:18:59 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+
+---------------------
+[root@MyLinuxVM ~]# cat /etc/redhat-release
+CentOS Linux release 7.9.2009 (Core)
+[root@MyLinuxVM ~]#
+
+----------
+[root@MyLinuxVM ~]# arch
+x86_64
+

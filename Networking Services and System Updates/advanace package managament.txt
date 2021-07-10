@@ -1,0 +1,66 @@
+yum install ksh ---> will automatically download and install ksh package
+
+OR wget url of the bin package downloads it , it will be in the same directory where you dwonload it. do ls -ltr  you will see , then 
+rpm -hiv ksh-20120801-142.el7.x86_64.rpm to install it. 
+
+
+[root@mylinuxvm ~]# wget http://mirror.centos.org/centos/7/os/x86_64/Packages/ks                                                                             h-20120801-142.el7.x86_64.rpm
+--2021-03-24 17:03:21--  http://mirror.centos.org/centos/7/os/x86_64/Packages/ks                                                                             h-20120801-142.el7.x86_64.rpm
+Resolving mirror.centos.org (mirror.centos.org)... 185.50.225.30, 2604:1380:2001                                                                             :d00::3
+Connecting to mirror.centos.org (mirror.centos.org)|185.50.225.30|:80... connect                                                                             ed.
+HTTP request sent, awaiting response... 200 OK
+Length: 905540 (884K) [application/x-rpm]
+Saving to: ‘ksh-20120801-142.el7.x86_64.rpm’
+
+100%[======================================>] 905,540     37.8KB/s   in 26s
+
+2021-03-24 17:03:49 (34.5 KB/s) - ‘ksh-20120801-142.el7.x86_64.rpm’ saved [90554                                                                             0/905540]
+
+[root@mylinuxvm ~]# ls -ltr
+total 3736
+-rw-r--r--. 1 root root  905540 Apr  3  2020 ksh-20120801-142.el7.x86_64.rpm
+-rw-r--r--. 1 root root 2843648 Jun 21  2020 putty-64bit-0.74-installer.msi
+-rw-r--r--. 1 root root   27170 Nov 22 17:29 latest.html.1
+-rw-r--r--. 1 root root   27170 Nov 22 17:29 latest.html
+-rw-------. 1 root root    1672 Mar 18 21:08 anaconda-ks.cfg
+-rw-r--r--. 1 root root    1720 Mar 19 01:50 initial-setup-ks.cfg
+-rw-r--r--. 1 root root     306 Mar 23 12:05 putty-0.74.tar.gz
+[root@mylinuxvm ~]# rpm -hiv ksh-20120801-142.el7.x86_64.rpm
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:ksh-20120801-142.el7             ################################# [100%]
+[root@mylinuxvm ~]# rpm -qa | grep ksh
+ksh-20120801-142.el7.x86_64
+[root@mylinuxvm ~]# rpm -qiksh-20120801-142.el7.x86_64.rpm
+rpm: -qiksh-20120801-142.el7.x86_64.rpm: unknown option
+[root@mylinuxvm ~]# rpm -qi ksh-20120801-142.el7.x86_64.rpm
+package ksh-20120801-142.el7.x86_64.rpm is not installed
+[root@mylinuxvm ~]# rpm -e ksh-20120801-142.el7.x86_64
+[root@mylinuxvm ~]# rpm -qa | grep ksh
+[root@mylinuxvm ~]# ksh
+bash: ksh: command not found...
+Similar command is: 'csh'
+[root@mylinuxvm ~]#  rpm -hiv ksh-20120801-142.el7.x86_64.rpm
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:ksh-20120801-142.el7             ################################# [100%]
+[root@mylinuxvm ~]# rpm -qc ksh-20120801-142.el7.x86_64
+/etc/binfmt.d/kshcomp.conf
+/etc/kshrc
+/etc/skel/.kshrc
+[root@mylinuxvm ~]# ksh
+# exit
+[root@mylinuxvm ~]# rpm -qf ksh
+error: file /root/ksh: No such file or directory
+[root@mylinuxvm ~]# which ksh
+/usr/bin/ksh
+[root@mylinuxvm ~]# rpm -qf /usr/bin/ksh
+ksh-20120801-142.el7.x86_64
+[root@mylinuxvm ~]# which pwd
+/usr/bin/pwd
+[root@mylinuxvm ~]# rpm -qf /usr/bin/pwd
+coreutils-8.22-24.el7_9.2.x86_64
+[root@mylinuxvm ~]# which yum
+/usr/bin/yum
+[root@mylinuxvm ~]# rpm -qf /usr/bin/yum
+yum-3.4.3-168.el7.centos.noarch

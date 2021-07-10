@@ -1,0 +1,16 @@
+Changing Hostname
+
+-	hostnamectl - set-hostname newhostname
+
+-	version 7	= Edit /etc/hostname
+
+
+[root@MyLinuxVM ~]# cat /etc/hostname
+MyLinuxVM
+
+-------------------
+ 
+[root@MyLinuxVM ~]# hostnamectl  set-hostname MyLinuxOS
+[root@MyLinuxVM ~]# hostname
+mylinuxos
+

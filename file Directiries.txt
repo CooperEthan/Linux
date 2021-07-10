@@ -1,0 +1,16 @@
+- /boot  contains file that is used by the boot loader (grup.cfg)
+- /root root user home directory. it is not same as /
+- /dev system devices ( dick , cdrom, speakers, flashdrive, keyboard etc.)
+- /etc Configuration files ( before you make changes anything inside etc make backup first) 
+- /bin -> /usr/bin everyday commands
+- /sbin -> system/silesystem commands
+- /opt optional add-on applications (not part of OS apps)
+- /proc Running processes (only exist in memory)
+- /lib -> usr/lib  C programming library files needed by commands and apps
+    strace -e open pwd
+- /tmp Directory for temp files
+- /home Directory for user
+- /var System logs
+- /run System deamons that starts very early  to store temp files like PID files
+- /mnt To mount external filesystem ( example NFS )
+- /media For cdrom mounts

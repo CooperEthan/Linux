@@ -1,0 +1,54 @@
+PROCESS MANAGEMENT
+
+-	Background = ctrl-z, jobs and bg
+-	Foreground = fg
+-	Run process even after exit = nohup process &
+	OR = nohup process > /dev/null 2>&1
+-	Kill a process by name = pkill
+-	Process priority = nice ( e.g. nice -n 5 process)
+	The niceness sclae goes from -20 to 19
+-	Process monitoring = top
+
+-----------------------------------
+[root@MyLinuxVM /]# sleep 10
+^C
+[root@MyLinuxVM /]# jobs
+[root@MyLinuxVM /]# sleep 100
+^C
+[root@MyLinuxVM /]# jobs
+[root@MyLinuxVM /]# ps -ef | grep sleep
+root     20319   747  0 22:33 ?        00:00:00 sleep 60
+root     20347 12735  0 22:34 pts/0    00:00:00 grep --co
+------------------------
+[root@MyLinuxVM /]# ps -ef | grep sleep
+root     20470   747  0 22:35 ?        00:00:00 sleep 60
+root     20516 12735  3 22:36 pts/0    00:00:00 grep --color=auto sleep
+[root@MyLinuxVM /]# nohup sleep 75 &
+[1] 20540
+[root@MyLinuxVM /]# nohup: ignoring input and appending output to ‘nohup.out’
+
+[root@MyLinuxVM /]# jobs
+[1]+  Running                 nohup sleep 75 &
+
+-------------------------
+[root@MyLinuxVM /]# nohup sleep 73 & /dev/null 2>&1 &
+[2] 20630
+[3] 20631
+[1]   Done                    nohup sleep 75
+[root@MyLinuxVM /]# -bash: /dev/null: Permission denied
+nohup: ignoring input and appending output to ‘nohup.out’
+
+[3]+  Exit 126                /dev/null 2>&1
+[root@MyLinuxVM /]# jobs
+[2]+  Running                 nohup sleep 73 &
+[root@MyLinuxVM /]# fg
+nohup sleep 73
+
+^C
+[root@MyLinuxVM /]# jobs
+
+-------------------
+
+[root@MyLinuxVM /]# nice -n -5 sleep 10  --> 5th priority
+			    -20          --> top priority
+

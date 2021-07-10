@@ -1,0 +1,13 @@
+LOG MONITORING
+
+Log Directory = /var/log  --> by default log directory unless it is defined
+-	boot          --> log when your system boots up, reboots
+-	chronyd = NTP --> 
+-	cron
+-	maillog  --> log about emails recieved and sent
+-	secure   --> log that records login and logout activities
+		     tail -f secure --> shows activities live
+-	messages --> dmesg  --> hardware, software, application etc  activities
+                      shows all the error, problems
+		     cat messages | head -10 | grep -i warn
+-	httpd    -->

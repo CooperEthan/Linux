@@ -1,0 +1,15 @@
+Main Run Levels
+
+- 0 Shut down or halt the system
+- 1 single user mode; usually aliased as s or S
+- 6 Reboot the system
+
+Other Run levels
+- 2 Multiuser mode without networking
+- 3 Multiuser mode with networking
+- 5 Multiuser mode with networking and GUI
+
+
+- who -r  --> it will show run level 
+- init 3 it will restart and have you login. you will be run level 3.
+  once you init 6 (reboot) it will bring you back as run level 5

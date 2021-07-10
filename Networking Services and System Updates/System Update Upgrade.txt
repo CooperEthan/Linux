@@ -1,0 +1,13 @@
+
+
+yum update -y example
+
+yum update --> minor update
+
+upgrade --> deletes old pacakges
+update --> preserves
+
+[root@mylinuxvm ~]# clear
+[root@mylinuxvm ~]# cat /etc/redhat-release
+CentOS Linux release 7.9.2009 (Core)
+[root@mylinuxvm ~]#

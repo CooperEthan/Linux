@@ -1,0 +1,101 @@
+PROCESSES AND JOBS
+
+-	Application = Service
+-	Script
+-	Process
+-	Daemon  --> runs until interrupted (it s kind of process)
+-	Threads  --> Service  --> Process --> thread1 , thread2 , thread3
+-	Job --> created by scheduler to run process
+
+PROCESS/SERVICES COMMANDS
+
+-	systemctl or service
+-	ps
+-	top --> all process running in the system (shows memmory, cpu etc)
+-	kill --> to stop process
+-	crontab --> to schedule process, services 
+-	at.    --> like crontab but it is one time like adhoc
+
+CRONJOBS
+
+-	hourly, daily, weekly, monthly
+
+All above crons are setup in
+-	/etc/cron._ (directory)
+The timing for each are set in
+-	/etc/anacrontab -- except hourly
+For hourly
+-	/etc/cron.d/0hourly.
+
+[root@MyLinuxVM etc]# ls -l | grep cron
+-rw-------.  1 root root      541 Aug  8  2019 anacrontab
+drwxr-xr-x.  2 root root       54 Mar 18 19:32 cron.d
+drwxr-xr-x.  2 root root       57 Mar 18 19:35 cron.daily
+-rw-------.  1 root root        0 Aug  8  2019 cron.deny
+drwxr-xr-x.  2 root root       41 Mar 18 19:33 cron.hourly
+drwxr-xr-x.  2 root root        6 Jun  9  2014 cron.monthly
+-rw-r--r--.  1 root root      451 Jun  9  2014 crontab
+drwxr-xr-x.  2 root root        6 Jun  9  2014 cron.weekly
+[root@MyLinuxVM etc]#
+you can just go into this directories to run your job daily or weekly or hourly
+to get the job done. you dont have to do it via crontab -e
+-----------------------
+[root@MyLinuxVM cron.weekly]# cat /etc/anacrontab
+# /etc/anacrontab: configuration file for anacron
+
+# See anacron(8) and anacrontab(5) for details.
+
+SHELL=/bin/sh
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+# the maximal random delay added to the base delay of the jobs
+RANDOM_DELAY=45
+# the jobs will be started during the following hours only
+START_HOURS_RANGE=3-22
+
+#period in days   delay in minutes   job-identifier   command
+1       5       cron.daily              nice run-parts /etc/cron.daily
+7       25      cron.weekly             nice run-parts /etc/cron.weekly
+@monthly 45     cron.monthly            nice run-parts /etc/cron.monthly
+[root@MyLinuxVM cron.weekly]#
+
+-------------------------
+
+
+
+---------------------
+[root@MyLinuxVM ~]# systemctl restart chronyd
+[root@MyLinuxVM ~]# systemctl status chronyd
+● chronyd.service - NTP client/server
+   Loaded: loaded (/usr/lib/systemd/system/chronyd.service; enabled; vendor preset: enabled)
+   Active: active (running) since Sat 2021-03-20 03:14:58 EDT; 11mi
+
+[root@MyLinuxVM ~]# systemctl stop chronyd
+
+[root@MyLinuxVM ~]# ps -f | grep chronyd
+root     14056 12735  0 03:28 pts/0    00:00:00 grep --color=auto chronyd
+---------------------------------
+
+systemctl enable chronyd --> it will start chronyd every time reboots
+-----------------------------
+[root@MyLinuxVM ~]# ps -ef | grep chronyd
+chrony   14549     1  0 03:35 ?        00:00:00 /usr/sbin/chronyd
+root     14584 12735  0 03:35 pts/0    00:00:00 grep --color=auto chronyd
+[root@MyLinuxVM ~]# kill 14549  --> stops the chrony process with its process id
+---------------------------------
+
+[root@MyLinuxVM ~]# date
+Sat Mar 20 03:37:49 EDT 2021
+[root@MyLinuxVM ~]# date -s "21 Mar 2021 21:12:00"  --> to correct to time
+Sun Mar 21 21:12:00 EDT 2021
+[root@MyLinuxVM ~]# date
+Sun Mar 21 21:12:03 EDT 2021
+--------------
+[root@MyLinuxVM ~]# crontab -e
+crontab: installing new crontab
+[root@MyLinuxVM ~]# date
+Sun Mar 21 21:17:04 EDT 2021
+[root@MyLinuxVM ~]# crontab -l
+17 21 * 3 * echo "This is my first crontab entry" > crontab-entry
+[root@MyLinuxVM ~]# cat crontab-entry
+This is my first crontab entry

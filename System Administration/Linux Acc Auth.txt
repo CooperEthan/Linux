@@ -1,0 +1,11 @@
+LINUX ACCOUNT AUTHENTICATION
+
+Types of Accounts
+-	Local accounts
+-	Domain/Directory accounts
+
+Client <----> Server (Auth)
+
+- Windows =Active Directory
+- Linux = LDAP ( protocol used against directory for auth for any os linux or 		windows)
+ 

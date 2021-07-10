@@ -1,0 +1,31 @@
+SWITCH USERS AND SUDO ACCESS
+
+Commands:
+
+-	su - username
+-	sudo command
+-	visudo
+
+FILE
+
+- /etc/sudoers
+
+[ecooper@MyLinuxVM ~]$ su - spiderman  --> login as spiderman user
+Password:
+Last login: Sat Mar 20 02:05:01 EDT 2021 on pts/0
+[spiderman@MyLinuxVM ~]$
+
+adding permission to user without modifiyin sudo : with the wheel command
+then run dmidecode or fdisk -l with adding sudo in front of it
+
+[root@MyLinuxVM ~]# usermod -aG wheel ecooper
+[root@MyLinuxVM ~]# grep wheel /etc/group
+wheel:x:10:ecooper
+[root@MyLinuxVM ~]# su - ecooper
+Last login: Sat Mar 20 00:48:15 EDT 2021 from 192.168.56.1 on pts/0
+[ecooper@MyLinuxVM ~]$ sudo dmidecode
+[sudo] password for ecooper:
+# dmidecode 3.2
+Getting SMBIOS data from sysfs.
+SMBIOS 2.5 present.
+ 

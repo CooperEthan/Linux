@@ -1,0 +1,10 @@
+SYSTEM MAINTENANACE
+
+-	shutdown
+-	init  --> init 6 command restarts your machine
+-	reboot --> restart
+-	halt  --> shutdowns computer, it is like hard reset
+
+anyone of these commands are similar except reboot
+
+reboote then hit enter, it will close and restart it.

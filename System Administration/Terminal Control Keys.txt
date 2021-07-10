@@ -1,0 +1,18 @@
+TERMINAL CONTROL KEYS
+
+- CTRL-u  --erase everything you have typed on the command line
+- CTRL-c  --stop/kill a command
+- CTRL-z  --suspend a command
+- CTRL-d  --exit from an interactive program 
+
+TERMINAL COMMANDS
+
+-	clear
+-	exit
+-	script
+
+-------------
+[ecooper@mylinuxvm ~]$ script lofile-activity.log --> creates log for all your 		       activity
+you need to do exit to stop recording log activities. then you can cat the file.
+
+

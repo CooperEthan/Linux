@@ -1,0 +1,12 @@
+- Absolute path
+   cd /var/log/samba
+
+- Relative Path
+  cd /var
+  cd log
+  cd samba
+
+
+- drwxr-xr-x   any file starts with d is a directory
+- lrwxrwxrwx   any file starts with l is a link
+- -rw-r-r--    any file start with -  is a regular file 

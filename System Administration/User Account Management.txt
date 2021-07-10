@@ -1,0 +1,67 @@
+User Account Management
+
+Commands
+-	useradd
+-	groupadd
+-	userdel
+-	groupdel
+-	usermod
+
+Files
+-	/etc/passwd
+-	/etc/group
+-	/etc/shadow
+
+Example:
+useradd -g superheros -s /bin/bash -c "user description" -m -d /home/spiderman spiderman
+
+[root@MyLinuxVM ~]# useradd spiderman
+[root@MyLinuxVM ~]# id
+uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+[root@MyLinuxVM ~]# id spiderman
+uid=1001(spiderman) gid=1001(spiderman) groups=1001(spiderman)
+[root@MyLinuxVM ~]# cd /home
+[root@MyLinuxVM home]# ls -l
+total 4
+drwx------. 20 ecooper   ecooper   4096 Mar 20 00:48 ecooper
+drwx------.  3 spiderman spiderman   78 Mar 20 01:19 spiderman
+[root@MyLinuxVM home]#
+
+[root@MyLinuxVM home]# groupadd superheros
+[root@MyLinuxVM home]# cat /etc/group  -->to check newly created group
+
+[root@MyLinuxVM home]# userdel -r spiderman --> deletes user
+[root@MyLinuxVM home]# ls
+ecooper
+
+[root@MyLinuxVM /]# groupdel nonewgroup  --> deletes the group
+
+[root@MyLinuxVM home]# usermod -G superheros spiderman --> add superheros group to spiderman user
+[root@MyLinuxVM home]# id spiderman
+uid=1001(spiderman) gid=1001(spiderman) groups=1001(spiderman),1002(superheros)
+[root@MyLinuxVM home]# grep spiderman /etc/group
+superheros:x:1002:spiderman
+spiderman:x:1001:
+
+cat /etc/passwd --> when you do that last 2 lines will give 2 users info
+ecooper:x:1000:1000:Ethan Cooper:/home/ecooper:/bin/bash
+spiderman:x:1001:1001::/home/spiderman:/bin/bash
+[root@MyLinuxVM home]#
+
+cat /etc/passwd --> password info , although it is encrypeted
+
+cat /etc/group --> shows the groups 
+ecooper:x:1000:ecooper
+superheros:x:1002:spiderman
+spiderman:x:1001:
+[root@MyLinuxVM home]#
+
+
+[root@MyLinuxVM home]# grep spiderman /etc/passwd
+spiderman:x:1001:1001::/home/spiderman:/bin/bash
+[root@MyLinuxVM home]# useradd -g superheros -s /bin/bash -c "Ironman Character" -m -d /home/ironman ironman
+[root@MyLinuxVM home]# id ironman
+uid=1002(ironman) gid=1002(superheros) groups=1002(superheros)
+[root@MyLinuxVM home]# cat /etc/passwd
+
+ironman passwd --> to create password for ironman user.

@@ -1,0 +1,39 @@
+SHELL SCRIPTING
+
+-	Shell (#!/bin/bash)
+-	Comments(# comments)
+-	Commands(echo, cp, grep etc.)
+-	Statements (if, while, for etc.)
+
+Shell scripts should have executable permissions ( eg -rwx r-x r-x)
+chmod a+x file  --> to add executable permission
+Shell script has to be called from absolute path ( eg /home/userdir/script.bash)
+If called from current location then ./script.bash
+
+echo creates empty line in vi editor when scripting a file
+
+-------------------
+[ecooper@mylinuxvm myscript]$ chmod a+x variable-command
+
+[ecooper@mylinuxvm myscript]$ vi variable-command
+[ecooper@mylinuxvm myscript]$ ./variable-command
+My first name is Ethan
+My last name is Cooper
+I am in the Linux class
+[ecooper@mylinuxvm myscript]$ vi variable-command
+#!/bin/bash
+
+#Example
+
+a=Cooper
+b=Ethan
+c='Linux class'
+
+echo "My first name is $b"
+echo "My last name is $a"
+echo "I am in the $c"
+
+INPUT/OUTPUT
+
+-	read
+-	echo

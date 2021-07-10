@@ -1,0 +1,8 @@
+- go linuxvm
+- change network from setetings on oracle vm to host only 
+- go to terminal
+- ipconfig , then enter
+- get the inet number which is like 192.168.56.101
+- go to putty write a name like mylinuxvm, enter the ip address on top, then open
+- it will take you to terminal and ask username and password,
+- it will connect you to linux vm after. you can check whoami and hostname to verify that

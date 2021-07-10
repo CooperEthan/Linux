@@ -1,0 +1,18 @@
+
+yum update- update will preserve
+yum upgrade - u[grade delete obsolete packages
+yum hostory undo <id>
+
+[root@mylinuxvm ~]# yum history
+Loaded plugins: fastestmirror, langpacks
+ID     | Command line             | Date and time    | Action(s)      | Altered
+-------------------------------------------------------------------------------
+     2 | history undo 1           | 2021-03-24 18:07 | Erase          |    1
+     1 | install screen           | 2021-03-24 17:57 | Install        |    1 PP
+history list
+
+[root@mylinuxvm ~]# yum history undo 1
+
+it deletes if there is no previous version when you do yum hostory undo command.
+
+you can do rollback for system by doing same after you do yum update. it will go back to previous version then.

@@ -1,0 +1,42 @@
+SYSTEM UTILITY COMMANDS
+
+-	date  
+-	uptime  --> how long its been up, how mnay users etc.
+-	hostname
+-	uname --> returns Linux
+-	which
+-	cal
+-	bc
+
+[ecooper@MyLinuxVM ~]$ which pwd
+/bin/pwd
+
+--------------
+[ecooper@MyLinuxVM ~]$ ls -l usr/bin/pwd
+ls: cannot access usr/bin/pwd: No such file or directory
+[ecooper@MyLinuxVM ~]$ ls -l /usr/bin/pwd
+-rwxr-xr-x. 1 root root 33232 Aug 20  2019 /usr/bin/pwd
+[ecooper@MyLinuxVM ~]$ which date
+/bin/date
+
+----------
+[ecooper@MyLinuxVM bin]$ ls -l | wc -l
+1673
+-----
+
+[ecooper@MyLinuxVM bin]$ bc
+bc 1.06.95
+Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006 Free Software Foundation, Inc.
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type `warranty'.
+2*3
+6
+---------
+[ecooper@MyLinuxVM bin]$ cal 9 2021
+   September 2021
+Su Mo Tu We Th Fr Sa
+          1  2  3  4
+ 5  6  7  8  9 10 11
+12 13 14 15 16 17 18
+19 20 21 22 23 24 25
+26 27 28 29 30

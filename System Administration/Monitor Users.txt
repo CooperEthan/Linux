@@ -1,0 +1,46 @@
+MONITOR USERS
+
+-	who
+-	last
+-	w
+-	finger
+-	id.   
+--------------
+[ecooper@MyLinuxVM ~]$ who
+ecooper  :0           2021-03-19 09:01 (:0)
+ecooper  pts/1        2021-03-19 16:45 (:0)
+ecooper  pts/0        2021-03-20 00:48 (192.168.56.1)
+[ecooper@MyLinuxVM ~]$
+-----------
+-	last command returns all the system information like boot etc...
+
+[ecooper@MyLinuxVM ~]$ last | awk '{print $1}' | sort | uniq
+-------------
+[ecooper@MyLinuxVM ~]$ id root
+uid=0(root) gid=0(root) groups=0(root)
+[ecooper@MyLinuxVM ~]$ id spiderman
+uid=1001(spiderman) gid=1001(spiderman) groups=1001(spiderman),1002(superheros)
+[ecooper@MyLinuxVM ~]$ id ecooper
+uid=1000(ecooper) gid=1000(ecooper) groups=1000(ecooper),10(wheel)
+[ecooper@MyLinuxVM ~]$
+
+-----------
+[ecooper@MyLinuxVM ~]$ su - spiderman
+Password:
+Last login: Sat Mar 20 02:05:28 EDT 2021 on pts/0
+[spiderman@MyLinuxVM ~]$
+
+---------
+[spiderman@MyLinuxVM ~]$ wall
+please logg off, this system is coming down for maintanance^[[D^[[D^[[D^[
+[spiderman@MyLinuxVM ~]$
+Broadcast message from spiderman@MyLinuxVM (pts/0) (Sat Mar 20 02:29:36 2021):
+
+
+please logg off, this system is coming down for maintanance^[[D^[[D^[[D^[
+
+[spiderman@MyLinuxVM ~]$ write ecooper
+Hi Cooper your web is getting bigger , please stop spreading your web
+
+[spiderman@MyLinuxVM ~]$
+

@@ -1,0 +1,61 @@
+LINUX FILE EDITOR
+-	vi  --> visual editor
+-	ed  --> standart line editor
+-	ex  --> extended line editor
+-	emacs --> a full screen editor
+-	pico  --> begineers editor
+-	vim --> advance version of vi
+
+VI EDITOR
+
+-	i  =insert
+-	ESC = escape
+-	q!  =quit without saving
+-	wq! = quit and save
+-	shift zz = quit and save
+-	r   =replace
+-	d  = delete
+-	o =creeates new line
+-	x =deletes character in esc mode
+-	dd=removes the line you are at
+-	u= brings back the line deleted by dd command
+-	/ then word you want to search, then hit enter.
+
+SED COMMAND (sed)
+
+[ecooper@MyLinuxVM seinfeld]$ sed -i 's/Kenny/Lenny/g' seinfeld-characters --> changes Kenny to Lenny in seinfeld-characters file
+
+
+[ecooper@MyLinuxVM seinfeld]$ sed 's/Costanza//g' seinfeld-characters
+--> deletes Costanza characters in the file
+
+[ecooper@MyLinuxVM seinfeld]$ sed '/Seinfeld/d' seinfeld-characters
+--> deletes Seinfeld word in the file
+
+[ecooper@MyLinuxVM seinfeld]$ sed '/^$/d' seinfeld-characters
+--> deletes empty lines
+
+[ecooper@MyLinuxVM seinfeld]$ sed '1d' seinfeld-characters
+--> deletes first line
+
+[ecooper@MyLinuxVM seinfeld]$ sed '1,2d' seinfeld-characters
+--> deletes first 2 line
+
+[ecooper@MyLinuxVM seinfeld]$ sed -i 's/\t/ /g' seinfeld-characters
+--> switches tabs with one space
+
+[ecooper@MyLinuxVM seinfeld]$ sed -n 12,18p seinfeld-characters
+--> shows only 12-18 lines in between
+
+[ecooper@MyLinuxVM seinfeld]$ sed 12,18d seinfeld-characters
+--> shows except 12-18 lines
+
+[ecooper@MyLinuxVM seinfeld]$ sed G seinfeld-characters
+--> adds empty lines in between all the lines
+
+[ecooper@MyLinuxVM seinfeld]$ sed '8!s/Seinfeld/S/' seinfeld-characters
+--> replaces Seinfeld with S except 8. line
+
+[ecooper@MyLinuxVM seinfeld]$ sed 's/Seinfeld/Peter/' seinfeld-characters
+--> replaces Seinfeld with Peter
+
